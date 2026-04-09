@@ -1,5 +1,5 @@
 const townFiles = [
-  { name: 'Human Resource', file: 'data/human-resource.json' }
+  { name: 'Human Resource', file: 'data/Human-resource.json' }
 ];
 
 let shopData = [];
