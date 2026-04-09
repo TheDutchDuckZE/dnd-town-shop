@@ -1,1 +1,65 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>D&D Town Shop</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="hero">
+    <h1>D&D Town Shop</h1>
+    <p>Een simpele tussen-sessies shop voor je party.</p>
+  </header>
 
+  <main class="layout">
+    <section class="panel player-panel">
+      <h2>Speler</h2>
+      <label for="playerName">Naam</label>
+      <input id="playerName" type="text" placeholder="Bijv. Thorgar" />
+
+      <label for="playerGold">Totaal gold</label>
+      <input id="playerGold" type="number" min="0" step="1" placeholder="Bijv. 125" />
+
+      <label for="townSelect">Stad</label>
+      <select id="townSelect">
+        <option value="data/greenhollow.json">Greenhollow</option>
+        <option value="data/ashport.json">Ashport</option>
+      </select>
+
+      <button id="loadTownBtn">Laad shop</button>
+
+      <div class="gold-box">
+        <p><strong>Speler:</strong> <span id="displayName">-</span></p>
+        <p><strong>Beschikbaar gold:</strong> <span id="displayGold">0</span> gp</p>
+      </div>
+    </section>
+
+    <section class="panel shop-panel">
+      <h2>Winkel</h2>
+      <div class="filters">
+        <button class="filter-btn active" data-category="all">Alles</button>
+        <button class="filter-btn" data-category="Common">Common</button>
+        <button class="filter-btn" data-category="Local">Local</button>
+        <button class="filter-btn" data-category="Special">Special</button>
+      </div>
+      <div id="shopItems" class="item-grid"></div>
+    </section>
+
+    <section class="panel cart-panel">
+      <h2>Mandje</h2>
+      <div id="cartItems" class="cart-list">
+        <p class="muted">Nog geen items gekozen.</p>
+      </div>
+      <div class="cart-summary">
+        <p><strong>Totaal:</strong> <span id="cartTotal">0</span> gp</p>
+        <p><strong>Gold na aankoop:</strong> <span id="goldAfter">0</span> gp</p>
+      </div>
+      <button id="buyBtn" class="buy-btn">Koop items</button>
+      <p id="message" class="message"></p>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
