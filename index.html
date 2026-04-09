@@ -3,107 +3,121 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>D&D Town Shop</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <title>Human Resource Munitorum</title>
   <link rel="stylesheet" href="style.css?v=3" />
 </head>
 <body>
   <header class="hero">
     <div class="hero-inner">
-      <div class="hero-copy">
-        <p class="eyebrow">Authorized Quartermaster Ledger</p>
-        <h1>D&amp;D Town Shop</h1>
-        <p class="hero-text">A grim market interface for between-session trade, contraband procurement, and civilized gold loss.</p>
+      <div>
+        <h1>Human Resource Munitorum</h1>
+        <p>
+          Requisition hub for sanctioned operatives. Between-mission wargear, contraband and “problem solving” assets, all neatly accounted in throne‑coins.
+        </p>
       </div>
-      <div class="sigil-wrap" aria-hidden="true">
-        <div class="sigil-ring"></div>
-        <div id="coin" class="coin">GP</div>
+      <div class="coin-box" aria-hidden="true">
+        <div id="coin" class="coin">HR</div>
       </div>
     </div>
   </header>
 
   <main class="layout">
+    <!-- OPERATIVE PANEL -->
     <section class="panel player-panel">
-      <div class="panel-title-wrap">
-        <p class="panel-kicker">Registry</p>
-        <h2>Player Dossier</h2>
-      </div>
+      <h2>Operative Dossier</h2>
 
-      <label for="playerName">Operative name</label>
-      <input id="playerName" type="text" placeholder="Enter character name" />
+      <label for="playerName">Designation</label>
+      <input
+        id="playerName"
+        type="text"
+        placeholder="For example: Acolyte Thorgar"
+      />
 
-      <div class="currency-grid">
-        <div>
-          <label for="playerPp">Platinum</label>
-          <input id="playerPp" type="number" min="0" step="1" value="0" />
-        </div>
-        <div>
-          <label for="playerGp">Gold</label>
-          <input id="playerGp" type="number" min="0" step="1" value="0" />
-        </div>
-        <div>
-          <label for="playerSp">Silver</label>
-          <input id="playerSp" type="number" min="0" step="1" value="0" />
-        </div>
-        <div>
-          <label for="playerCp">Copper</label>
-          <input id="playerCp" type="number" min="0" step="1" value="0" />
-        </div>
-      </div>
+      <label for="playerPp">Platinum Litanies</label>
+      <input id="playerPp" type="number" min="0" step="1" value="0" />
 
-      <label for="townSelect">Settlement archive</label>
+      <label for="playerGp">Golden Thrones</label>
+      <input id="playerGp" type="number" min="0" step="1" value="0" />
+
+      <label for="playerSp">Silver Marks</label>
+      <input id="playerSp" type="number" min="0" step="1" value="0" />
+
+      <label for="playerCp">Copper Chits</label>
+      <input id="playerCp" type="number" min="0" step="1" value="0" />
+
+      <label for="townSelect">Theatre of Operations</label>
       <select id="townSelect"></select>
 
-      <button id="loadTownBtn">Load quartermaster</button>
+      <button id="loadTownBtn">Load manifest</button>
 
-      <div class="gold-box status-box">
-        <p><strong>Player:</strong> <span id="displayName">-</span></p>
-        <p><strong>Available funds:</strong> <span id="displayFunds">0 pp, 0 gp, 0 sp, 0 cp</span></p>
-        <p><strong>Current town:</strong> <span id="displayTown">-</span></p>
+      <div class="gold-box">
+        <p><strong>Operative:</strong> <span id="displayName">-</span></p>
+        <p>
+          <strong>Available funds:</strong>
+          <span id="displayFunds">0 pp, 0 gp, 0 sp, 0 cp</span>
+        </p>
+        <p><strong>Current port:</strong> <span id="displayTown">-</span></p>
       </div>
     </section>
 
+    <!-- SHOP PANEL -->
     <section class="panel shop-panel">
       <div class="section-head">
-        <div class="panel-title-wrap">
-          <p class="panel-kicker">Manifest</p>
-          <h2>Market Inventory</h2>
+        <div>
+          <h2>Requisition Stockpile</h2>
+          <p id="townDescription" class="muted">
+            Select a theatre to retrieve its sanctioned (and less sanctioned) inventory.
+          </p>
         </div>
-        <p id="townDescription" class="muted">Load a town to view its wares.</p>
+        <div class="filters" id="filters"></div>
       </div>
-      <div class="filters" id="filters"></div>
+
       <div id="shopItems" class="item-grid"></div>
     </section>
 
+    <!-- CART PANEL -->
     <section class="panel cart-panel">
-      <div class="panel-title-wrap">
-        <p class="panel-kicker">Requisition</p>
-        <h2>Cart</h2>
-      </div>
+      <h2>Pending Requisitions</h2>
       <div id="cartItems" class="cart-list">
-        <p class="muted">No items selected yet.</p>
+        <p class="muted">No assets queued. The quartermaster glares impatiently.</p>
       </div>
-      <div class="cart-summary status-box">
-        <p><strong>Total:</strong> <span id="cartTotal">0 pp, 0 gp, 0 sp, 0 cp</span></p>
-        <p><strong>Funds after purchase:</strong> <span id="goldAfter">0 pp, 0 gp, 0 sp, 0 cp</span></p>
+      <div class="cart-summary">
+        <p>
+          <strong>Total cost:</strong>
+          <span id="cartTotal">0 pp, 0 gp, 0 sp, 0 cp</span>
+        </p>
+        <p>
+          <strong>Funds after approval:</strong>
+          <span id="goldAfter">0 pp, 0 gp, 0 sp, 0 cp</span>
+        </p>
       </div>
-      <button id="buyBtn" class="buy-btn">Confirm purchase</button>
+      <button id="buyBtn" class="buy-btn">Authorize requisition</button>
       <p id="message" class="message"></p>
     </section>
 
+    <!-- HISTORY PANEL -->
     <section class="panel history-panel">
-      <div class="panel-title-wrap">
-        <p class="panel-kicker">Records</p>
-        <h2>Purchased Items</h2>
-      </div>
+      <h2>Acquired Wargear Log</h2>
       <div id="purchaseHistory" class="history-list">
-        <p class="muted">No purchases yet.</p>
+        <p class="muted">
+          No recorded purchases. Either the cell is fresh… or the scribe is asleep.
+        </p>
       </div>
+    </section>
+
+    <!-- DM HELPER (NO JSON EXAMPLE) -->
+    <section class="panel help-panel full-width">
+      <h2>Handler Notes</h2>
+      <p class="muted">
+        To forge a new port or black‑market contact, duplicate one of the JSON files in
+        <code>data/</code>, change the town name, description, categories, and items
+        (using <code>priceCp</code> for cost in copper), then list that file in
+        <code>townFiles</code> inside <code>script.js</code>. Commit, push, and the
+        manifest will update for your agents before the next briefing.
+      </p>
     </section>
   </main>
 
-  <script src="script.js?v=2" defer></script>
+  <script src="script.js?v=3" defer></script>
 </body>
 </html>
