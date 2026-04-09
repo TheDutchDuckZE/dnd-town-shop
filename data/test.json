@@ -1,0 +1,63 @@
+{
+  "town": "test",
+  "description": "a tester.",
+  "categories": ["Common", "Local", "Special", "Winter Gear"],
+  "items": [
+    {
+      "id": 1,
+      "name": "Torch",
+      "price": 1,
+      "category": "Common",
+      "description": "A simple torch for caves, ruins, and dark roads."
+    },
+    {
+      "id": 2,
+      "name": "Rations, 1 day",
+      "price": 1,
+      "category": "Common",
+      "description": "Dry travel food packed for cold-weather journeys."
+    },
+    {
+      "id": 3,
+      "name": "Snowberry Jam",
+      "price": 3,
+      "category": "Local",
+      "description": "A thick, tart jam made from local mountain berries."
+    },
+    {
+      "id": 4,
+      "name": "Spiced Seal Stew",
+      "price": 5,
+      "category": "Local",
+      "description": "A heavy northern stew served hot in clay travel pots."
+    },
+    {
+      "id": 5,
+      "name": "Frostglass Charm",
+      "price": 18,
+      "category": "Special",
+      "description": "A pale blue charm that stays cold to the touch."
+    },
+    {
+      "id": 6,
+      "name": "Lantern of Blue Melt",
+      "price": 24,
+      "category": "Special",
+      "description": "A lantern filled with strange blue oil that burns clean in snowstorms."
+    },
+    {
+      "id": 7,
+      "name": "Wool Travel Cloak",
+      "price": 8,
+      "category": "Winter Gear",
+      "description": "A thick cloak lined for icy roads and wind-heavy passes."
+    },
+    {
+      "id": 8,
+      "name": "Fur-Lined Boots",
+      "price": 10,
+      "category": "Winter Gear",
+      "description": "Heavy boots made to keep footing on frozen roads."
+    }
+  ]
+}
