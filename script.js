@@ -35,6 +35,8 @@ function populateTownSelect() {
     .join('');
 }
 
+/* Currency helpers */
+
 function currencyToCopper(pp, gp, sp, cp) {
   return (Number(pp) || 0) * 1000 +
          (Number(gp) || 0) * 100 +
@@ -74,6 +76,8 @@ function setPlayerCopper(totalCp) {
   playerCpInput.value = cp;
 }
 
+/* UI updates */
+
 function updatePlayerBox() {
   displayName.textContent = playerNameInput.value || '-';
   displayTown.textContent = currentTown?.town || '-';
@@ -88,6 +92,8 @@ function updateCartSummary() {
   goldAfter.textContent = formatCurrency(remainingCp);
 }
 
+/* Animations */
+
 function flashCoin() {
   coin.classList.remove('coin-spin');
   void coin.offsetWidth;
@@ -100,10 +106,14 @@ function flashBuyButton() {
   buyBtn.classList.add('purchase-pop');
 }
 
+/* Messages */
+
 function showMessage(text, type = 'message') {
   message.textContent = text;
   message.className = `${type} flash`;
 }
+
+/* History & cart */
 
 function renderPurchaseHistory() {
   if (purchaseHistory.length === 0) {
@@ -159,6 +169,8 @@ function addToCart(itemId) {
 
 window.addToCart = addToCart;
 
+/* Filters & shop */
+
 function renderFilters() {
   const categories = currentTown?.categories?.length
     ? currentTown.categories
@@ -200,6 +212,8 @@ function renderShop() {
   `).join('');
 }
 
+/* Town loading */
+
 async function loadTown() {
   const response = await fetch(townSelect.value);
   const data = await response.json();
@@ -220,6 +234,8 @@ function setCategory(category) {
   renderFilters();
   renderShop();
 }
+
+/* Events */
 
 buyBtn.addEventListener('click', () => {
   const playerCp = getPlayerCopper();
@@ -260,11 +276,13 @@ buyBtn.addEventListener('click', () => {
   showMessage('Purchase complete. Funds updated.', 'message success');
 });
 
-[playerPpInput, playerGpInput, playerSpInput, playerCpInput, playerNameInput].forEach(input => {
+[playerNameInput, playerPpInput, playerGpInput, playerSpInput, playerCpInput].forEach(input => {
   input.addEventListener('input', updatePlayerBox);
 });
 
 loadTownBtn.addEventListener('click', loadTown);
+
+/* Init */
 
 populateTownSelect();
 renderPurchaseHistory();
