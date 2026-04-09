@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>D&D Town Shop</title>
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="style.css?v=2" />
 </head>
 <body>
   <header class="hero">
@@ -20,8 +20,10 @@
   </header>
 
   <main class="layout">
+    <!-- PLAYER -->
     <section class="panel player-panel">
       <h2>Player</h2>
+
       <label for="playerName">Name</label>
       <input id="playerName" type="text" placeholder="For example: Thorgar" />
 
@@ -44,11 +46,12 @@
 
       <div class="gold-box">
         <p><strong>Player:</strong> <span id="displayName">-</span></p>
-        <p><strong>Available gold:</strong> <span id="displayFunds">0 pp, 0 gp, 0 sp, 0 cp</span>
+        <p><strong>Available funds:</strong> <span id="displayFunds">0 pp, 0 gp, 0 sp, 0 cp</span></p>
         <p><strong>Current town:</strong> <span id="displayTown">-</span></p>
       </div>
     </section>
 
+    <!-- SHOP -->
     <section class="panel shop-panel">
       <div class="section-head">
         <h2>Shop</h2>
@@ -58,19 +61,21 @@
       <div id="shopItems" class="item-grid"></div>
     </section>
 
+    <!-- CART -->
     <section class="panel cart-panel">
       <h2>Cart</h2>
       <div id="cartItems" class="cart-list">
         <p class="muted">No items selected yet.</p>
       </div>
       <div class="cart-summary">
-        <p><strong>Total:</strong> <span id="cartTotal">0</span> gp</p>
-        <p><strong>Gold after purchase:</strong> <span id="goldAfter">0</span> gp</p>
+        <p><strong>Total:</strong> <span id="cartTotal">0 pp, 0 gp, 0 sp, 0 cp</span></p>
+        <p><strong>Funds after purchase:</strong> <span id="goldAfter">0 pp, 0 gp, 0 sp, 0 cp</span></p>
       </div>
       <button id="buyBtn" class="buy-btn">Buy items</button>
       <p id="message" class="message"></p>
     </section>
 
+    <!-- HISTORY -->
     <section class="panel history-panel">
       <h2>Purchased items</h2>
       <div id="purchaseHistory" class="history-list">
@@ -78,34 +83,19 @@
       </div>
     </section>
 
+    <!-- HELP -->
     <section class="panel help-panel full-width">
       <h2>How to add towns and items</h2>
       <ol class="help-list">
-        <li>Open the <code>data</code> folder and duplicate one of the existing JSON files. Rename it, for example, <code>frostmarket.json</code>.</li>
-        <li>Change the <code>town</code> value, the <code>description</code>, and the <code>categories</code> list in that file.</li>
-        <li>Add or remove items inside the <code>items</code> array. Each item should have an <code>id</code>, <code>name</code>, <code>price</code>, <code>category</code>, and <code>description</code>.</li>
-        <li>Open <code>script.js</code> and add your new town file to the <code>townFiles</code> list near the top.</li>
-        <li>Commit the changed files and push them to GitHub. GitHub Pages will update the shop automatically.</li>
+        <li>Open the <code>data</code> folder and duplicate one of the existing JSON files.</li>
+        <li>Rename it (for example, <code>human-resource.json</code>) and edit the <code>town</code>, <code>description</code>, and <code>categories</code>.</li>
+        <li>Add or remove items inside the <code>items</code> array. Use <code>priceCp</code> for the cost in copper.</li>
+        <li>Open <code>script.js</code> and add your new town file to the <code>townFiles</code> list.</li>
+        <li>Commit and push; your hosting will update the shop automatically.</li>
       </ol>
-      <div class="code-example">
-<pre>{
-  "town": "Frostmarket",
-  "description": "A cold trade post known for hardy food and winter gear.",
-  "categories": ["Common", "Local", "Special", "Winter Gear"],
-  "items": [
-    {
-      "id": 1,
-      "name": "Wool Travel Cloak",
-      "price": 8,
-      "category": "Winter Gear",
-      "description": "A thick cloak lined for icy roads."
-    }
-  ]
-}</pre>
-      </div>
     </section>
   </main>
 
-  <script src="script.js"></script>
+  <script src="script.js?v=2" defer></script>
 </body>
 </html>
