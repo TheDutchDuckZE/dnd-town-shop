@@ -1,66 +1,105 @@
 <!DOCTYPE html>
-<html lang="nl">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>D&D Town Shop Advanced</title>
+  <title>D&D Town Shop</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <header class="hero">
-    <h1>D&D Town Shop</h1>
-    <p>Tussen-sessies shoppen met speleropslag en stadbeheer.</p>
+    <div class="hero-inner">
+      <div>
+        <h1>D&D Town Shop</h1>
+        <p>A between-session shop for your party, with town-specific goods and a running gold total.</p>
+      </div>
+      <div class="coin-box" aria-hidden="true">
+        <div id="coin" class="coin">GP</div>
+      </div>
+    </div>
   </header>
 
   <main class="layout">
-    <section class="panel">
-      <h2>Spelerprofiel</h2>
-      <label for="playerName">Naam</label>
-      <input id="playerName" type="text" placeholder="Bijv. Thorgar" />
+    <section class="panel player-panel">
+      <h2>Player</h2>
+      <label for="playerName">Name</label>
+      <input id="playerName" type="text" placeholder="For example: Thorgar" />
 
-      <label for="playerGold">Gold</label>
-      <input id="playerGold" type="number" min="0" step="1" placeholder="125" />
+      <label for="playerGold">Total gold</label>
+      <input id="playerGold" type="number" min="0" step="1" placeholder="For example: 125" />
 
-      <div class="button-row">
-        <button id="saveLocalBtn">Lokaal opslaan</button>
-        <button id="loadLocalBtn" class="secondary">Lokaal laden</button>
-      </div>
-
-      <div class="info-box">
-        <p><strong>Speler:</strong> <span id="displayName">-</span></p>
-        <p><strong>Beschikbaar gold:</strong> <span id="displayGold">0</span> gp</p>
-      </div>
-
-      <h3>Online sheet koppeling</h3>
-      <label for="sheetUrl">Sheet/API URL</label>
-      <input id="sheetUrl" type="text" placeholder="Bijv. SheetDB / Apps Script endpoint" />
-      <div class="button-row">
-        <button id="saveOnlineBtn">Opslaan naar online sheet</button>
-        <button id="loadOnlineBtn" class="secondary">Laden uit online sheet</button>
-      </div>
-      <p class="muted small">Gebruik bijvoorbeeld een Google Sheets endpoint of SheetDB-URL.</p>
-    </section>
-
-    <section class="panel">
-      <h2>Stad en winkel</h2>
-      <label for="townSelect">Stad</label>
+      <label for="townSelect">Town</label>
       <select id="townSelect"></select>
 
-      <div class="button-row">
-        <button id="loadTownBtn">Laad stad</button>
-        <button id="exportTownBtn" class="secondary">Exporteer stad JSON</button>
-      </div>
+      <button id="loadTownBtn">Load shop</button>
 
-      <div class="filters">
-        <button class="filter-btn active" data-category="all">Alles</button>
-        <button class="filter-btn" data-category="Common">Common</button>
-        <button class="filter-btn" data-category="Local">Local</button>
-        <button class="filter-btn" data-category="Special">Special</button>
+      <div class="gold-box">
+        <p><strong>Player:</strong> <span id="displayName">-</span></p>
+        <p><strong>Available gold:</strong> <span id="displayGold">0</span> gp</p>
+        <p><strong>Current town:</strong> <span id="displayTown">-</span></p>
       </div>
+    </section>
 
+    <section class="panel shop-panel">
+      <div class="section-head">
+        <h2>Shop</h2>
+        <p id="townDescription" class="muted">Load a town to view its wares.</p>
+      </div>
+      <div class="filters" id="filters"></div>
       <div id="shopItems" class="item-grid"></div>
     </section>
 
+    <section class="panel cart-panel">
+      <h2>Cart</h2>
+      <div id="cartItems" class="cart-list">
+        <p class="muted">No items selected yet.</p>
+      </div>
+      <div class="cart-summary">
+        <p><strong>Total:</strong> <span id="cartTotal">0</span> gp</p>
+        <p><strong>Gold after purchase:</strong> <span id="goldAfter">0</span> gp</p>
+      </div>
+      <button id="buyBtn" class="buy-btn">Buy items</button>
+      <p id="message" class="message"></p>
+    </section>
+
+    <section class="panel history-panel">
+      <h2>Purchased items</h2>
+      <div id="purchaseHistory" class="history-list">
+        <p class="muted">No purchases yet.</p>
+      </div>
+    </section>
+
+    <section class="panel help-panel full-width">
+      <h2>How to add towns and items</h2>
+      <ol class="help-list">
+        <li>Open the <code>data</code> folder and duplicate one of the existing JSON files. Rename it, for example, <code>frostmarket.json</code>.</li>
+        <li>Change the <code>town</code> value, the <code>description</code>, and the <code>categories</code> list in that file.</li>
+        <li>Add or remove items inside the <code>items</code> array. Each item should have an <code>id</code>, <code>name</code>, <code>price</code>, <code>category</code>, and <code>description</code>.</li>
+        <li>Open <code>script.js</code> and add your new town file to the <code>townFiles</code> list near the top.</li>
+        <li>Commit the changed files and push them to GitHub. GitHub Pages will update the shop automatically.</li>
+      </ol>
+      <div class="code-example">
+<pre>{
+  "town": "Frostmarket",
+  "description": "A cold trade post known for hardy food and winter gear.",
+  "categories": ["Common", "Local", "Special", "Winter Gear"],
+  "items": [
+    {
+      "id": 1,
+      "name": "Wool Travel Cloak",
+      "price": 8,
+      "category": "Winter Gear",
+      "description": "A thick cloak lined for icy roads."
+    }
+  ]
+}</pre>
+      </div>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
     <section class="panel">
       <h2>Mandje</h2>
       <div id="cartItems" class="cart-list"><p class="muted">Nog geen items gekozen.</p></div>
