@@ -4,14 +4,14 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>D&D Town Shop</title>
-  <link rel="stylesheet" href="style.css?v=5" />
+  <link rel="stylesheet" href="style.css?v=2" />
 </head>
 <body>
   <header class="hero">
     <div class="hero-inner">
       <div>
         <h1>D&D Town Shop</h1>
-        <p>A shop for between-session purchases, local goods, and party bookkeeping.</p>
+        <p>A between-session shop for your party, with town-specific goods and a running gold total.</p>
       </div>
       <div class="coin-box" aria-hidden="true">
         <div id="coin" class="coin">GP</div>
@@ -20,11 +20,12 @@
   </header>
 
   <main class="layout">
+    <!-- PLAYER -->
     <section class="panel player-panel">
       <h2>Player</h2>
 
       <label for="playerName">Name</label>
-      <input id="playerName" type="text" placeholder="Character name" />
+      <input id="playerName" type="text" placeholder="For example: Thorgar" />
 
       <label for="playerPp">Platinum</label>
       <input id="playerPp" type="number" min="0" step="1" value="0" />
@@ -50,6 +51,7 @@
       </div>
     </section>
 
+    <!-- SHOP -->
     <section class="panel shop-panel">
       <div class="section-head">
         <h2>Shop</h2>
@@ -59,66 +61,41 @@
       <div id="shopItems" class="item-grid"></div>
     </section>
 
+    <!-- CART -->
     <section class="panel cart-panel">
       <h2>Cart</h2>
-      <div     <!-- SHOP PANEL -->
-    <section class="panel shop-panel">
-      <div class="section-head">
-        <div>
-          <h2>Requisition Stockpile</h2>
-          <p id="townDescription" class="muted">
-            Select a theatre to retrieve its sanctioned (and less sanctioned) inventory.
-          </p>
-        </div>
-        <div class="filters" id="filters"></div>
-      </div>
-
-      <div id="shopItems" class="item-grid"></div>
-    </section>
-
-    <!-- CART PANEL -->
-    <section class="panel cart-panel">
-      <h2>Pending Requisitions</h2>
       <div id="cartItems" class="cart-list">
-        <p class="muted">No assets queued. The quartermaster glares impatiently.</p>
+        <p class="muted">No items selected yet.</p>
       </div>
       <div class="cart-summary">
-        <p>
-          <strong>Total cost:</strong>
-          <span id="cartTotal">0 pp, 0 gp, 0 sp, 0 cp</span>
-        </p>
-        <p>
-          <strong>Funds after approval:</strong>
-          <span id="goldAfter">0 pp, 0 gp, 0 sp, 0 cp</span>
-        </p>
+        <p><strong>Total:</strong> <span id="cartTotal">0 pp, 0 gp, 0 sp, 0 cp</span></p>
+        <p><strong>Funds after purchase:</strong> <span id="goldAfter">0 pp, 0 gp, 0 sp, 0 cp</span></p>
       </div>
-      <button id="buyBtn" class="buy-btn">Authorize requisition</button>
+      <button id="buyBtn" class="buy-btn">Buy items</button>
       <p id="message" class="message"></p>
     </section>
 
-    <!-- HISTORY PANEL -->
+    <!-- HISTORY -->
     <section class="panel history-panel">
-      <h2>Acquired Wargear Log</h2>
+      <h2>Purchased items</h2>
       <div id="purchaseHistory" class="history-list">
-        <p class="muted">
-          No recorded purchases. Either the cell is fresh… or the scribe is asleep.
-        </p>
+        <p class="muted">No purchases yet.</p>
       </div>
     </section>
 
-    <!-- DM HELPER (NO JSON EXAMPLE) -->
+    <!-- HELP -->
     <section class="panel help-panel full-width">
-      <h2>Handler Notes</h2>
-      <p class="muted">
-        To forge a new port or black‑market contact, duplicate one of the JSON files in
-        <code>data/</code>, change the town name, description, categories, and items
-        (using <code>priceCp</code> for cost in copper), then list that file in
-        <code>townFiles</code> inside <code>script.js</code>. Commit, push, and the
-        manifest will update for your agents before the next briefing.
-      </p>
+      <h2>How to add towns and items</h2>
+      <ol class="help-list">
+        <li>Open the <code>data</code> folder and duplicate one of the existing JSON files.</li>
+        <li>Rename it (for example, <code>human-resource.json</code>) and edit the <code>town</code>, <code>description</code>, and <code>categories</code>.</li>
+        <li>Add or remove items inside the <code>items</code> array. Use <code>priceCp</code> for the cost in copper.</li>
+        <li>Open <code>script.js</code> and add your new town file to the <code>townFiles</code> list.</li>
+        <li>Commit and push; your hosting will update the shop automatically.</li>
+      </ol>
     </section>
   </main>
 
-  <script src="script.js?v=3" defer></script>
+  <script src="script.js?v=2" defer></script>
 </body>
 </html>
