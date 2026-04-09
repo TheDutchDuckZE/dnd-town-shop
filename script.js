@@ -1,5 +1,5 @@
 const townFiles = [
-  { name: 'Greenhollow', file: 'data/greenhollow.json' },
+  { name: 'Frostmarket', file: 'data/greenhollow.json' },
   { name: 'Ashport', file: 'data/ashport.json' }
 ];
 
