@@ -3,64 +3,65 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Human Resource Munitorum</title>
-  <link rel="stylesheet" href="style.css?v=3" />
+  <title>D&D Town Shop</title>
+  <link rel="stylesheet" href="style.css?v=5" />
 </head>
 <body>
   <header class="hero">
     <div class="hero-inner">
       <div>
-        <h1>Human Resource Munitorum</h1>
-        <p>
-          Requisition hub for sanctioned operatives. Between-mission wargear, contraband and “problem solving” assets, all neatly accounted in throne‑coins.
-        </p>
+        <h1>D&D Town Shop</h1>
+        <p>A shop for between-session purchases, local goods, and party bookkeeping.</p>
       </div>
       <div class="coin-box" aria-hidden="true">
-        <div id="coin" class="coin">HR</div>
+        <div id="coin" class="coin">GP</div>
       </div>
     </div>
   </header>
 
   <main class="layout">
-    <!-- OPERATIVE PANEL -->
     <section class="panel player-panel">
-      <h2>Operative Dossier</h2>
+      <h2>Player</h2>
 
-      <label for="playerName">Designation</label>
-      <input
-        id="playerName"
-        type="text"
-        placeholder="For example: Acolyte Thorgar"
-      />
+      <label for="playerName">Name</label>
+      <input id="playerName" type="text" placeholder="Character name" />
 
-      <label for="playerPp">Platinum Litanies</label>
+      <label for="playerPp">Platinum</label>
       <input id="playerPp" type="number" min="0" step="1" value="0" />
 
-      <label for="playerGp">Golden Thrones</label>
+      <label for="playerGp">Gold</label>
       <input id="playerGp" type="number" min="0" step="1" value="0" />
 
-      <label for="playerSp">Silver Marks</label>
+      <label for="playerSp">Silver</label>
       <input id="playerSp" type="number" min="0" step="1" value="0" />
 
-      <label for="playerCp">Copper Chits</label>
+      <label for="playerCp">Copper</label>
       <input id="playerCp" type="number" min="0" step="1" value="0" />
 
-      <label for="townSelect">Theatre of Operations</label>
+      <label for="townSelect">Town</label>
       <select id="townSelect"></select>
 
-      <button id="loadTownBtn">Load manifest</button>
+      <button id="loadTownBtn">Load shop</button>
 
       <div class="gold-box">
-        <p><strong>Operative:</strong> <span id="displayName">-</span></p>
-        <p>
-          <strong>Available funds:</strong>
-          <span id="displayFunds">0 pp, 0 gp, 0 sp, 0 cp</span>
-        </p>
-        <p><strong>Current port:</strong> <span id="displayTown">-</span></p>
+        <p><strong>Player:</strong> <span id="displayName">-</span></p>
+        <p><strong>Available funds:</strong> <span id="displayFunds">0 pp, 0 gp, 0 sp, 0 cp</span></p>
+        <p><strong>Current town:</strong> <span id="displayTown">-</span></p>
       </div>
     </section>
 
-    <!-- SHOP PANEL -->
+    <section class="panel shop-panel">
+      <div class="section-head">
+        <h2>Shop</h2>
+        <p id="townDescription" class="muted">Load a town to view its wares.</p>
+      </div>
+      <div class="filters" id="filters"></div>
+      <div id="shopItems" class="item-grid"></div>
+    </section>
+
+    <section class="panel cart-panel">
+      <h2>Cart</h2>
+      <div     <!-- SHOP PANEL -->
     <section class="panel shop-panel">
       <div class="section-head">
         <div>
