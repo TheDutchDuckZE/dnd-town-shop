@@ -25,8 +25,17 @@
       <label for="playerName">Name</label>
       <input id="playerName" type="text" placeholder="For example: Thorgar" />
 
-      <label for="playerGold">Total gold</label>
-      <input id="playerGold" type="number" min="0" step="1" placeholder="For example: 125" />
+      <<label for="playerPp">Platinum</label>
+      <input id="playerPp" type="number" min="0" step="1" value="0" />
+
+      <label for="playerGp">Gold</label>
+      <input id="playerGp" type="number" min="0" step="1" value="0" />
+
+      <label for="playerSp">Silver</label>
+      <input id="playerSp" type="number" min="0" step="1" value="0" />
+
+      <label for="playerCp">Copper</label>
+      <input id="playerCp" type="number" min="0" step="1" value="0" />
 
       <label for="townSelect">Town</label>
       <select id="townSelect"></select>
@@ -35,7 +44,7 @@
 
       <div class="gold-box">
         <p><strong>Player:</strong> <span id="displayName">-</span></p>
-        <p><strong>Available gold:</strong> <span id="displayGold">0</span> gp</p>
+        <p><strong>Available gold:</strong> <span id="displayFunds">0 pp, 0 gp, 0 sp, 0 cp</span>
         <p><strong>Current town:</strong> <span id="displayTown">-</span></p>
       </div>
     </section>
