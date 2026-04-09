@@ -3,59 +3,102 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>D&D Town Shop</title>
+  <title>D&D Town Shop Advanced</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <header class="hero">
     <h1>D&D Town Shop</h1>
-    <p>Een simpele tussen-sessies shop voor je party.</p>
+    <p>Tussen-sessies shoppen met speleropslag en stadbeheer.</p>
   </header>
 
   <main class="layout">
-    <section class="panel player-panel">
-      <h2>Speler</h2>
+    <section class="panel">
+      <h2>Spelerprofiel</h2>
       <label for="playerName">Naam</label>
       <input id="playerName" type="text" placeholder="Bijv. Thorgar" />
 
-      <label for="playerGold">Totaal gold</label>
-      <input id="playerGold" type="number" min="0" step="1" placeholder="Bijv. 125" />
+      <label for="playerGold">Gold</label>
+      <input id="playerGold" type="number" min="0" step="1" placeholder="125" />
 
-      <label for="townSelect">Stad</label>
-      <select id="townSelect">
-        <option value="data/greenhollow.json">Greenhollow</option>
-        <option value="data/ashport.json">Ashport</option>
-      </select>
+      <div class="button-row">
+        <button id="saveLocalBtn">Lokaal opslaan</button>
+        <button id="loadLocalBtn" class="secondary">Lokaal laden</button>
+      </div>
 
-      <button id="loadTownBtn">Laad shop</button>
-
-      <div class="gold-box">
+      <div class="info-box">
         <p><strong>Speler:</strong> <span id="displayName">-</span></p>
         <p><strong>Beschikbaar gold:</strong> <span id="displayGold">0</span> gp</p>
       </div>
+
+      <h3>Online sheet koppeling</h3>
+      <label for="sheetUrl">Sheet/API URL</label>
+      <input id="sheetUrl" type="text" placeholder="Bijv. SheetDB / Apps Script endpoint" />
+      <div class="button-row">
+        <button id="saveOnlineBtn">Opslaan naar online sheet</button>
+        <button id="loadOnlineBtn" class="secondary">Laden uit online sheet</button>
+      </div>
+      <p class="muted small">Gebruik bijvoorbeeld een Google Sheets endpoint of SheetDB-URL.</p>
     </section>
 
-    <section class="panel shop-panel">
-      <h2>Winkel</h2>
+    <section class="panel">
+      <h2>Stad en winkel</h2>
+      <label for="townSelect">Stad</label>
+      <select id="townSelect"></select>
+
+      <div class="button-row">
+        <button id="loadTownBtn">Laad stad</button>
+        <button id="exportTownBtn" class="secondary">Exporteer stad JSON</button>
+      </div>
+
       <div class="filters">
         <button class="filter-btn active" data-category="all">Alles</button>
         <button class="filter-btn" data-category="Common">Common</button>
         <button class="filter-btn" data-category="Local">Local</button>
         <button class="filter-btn" data-category="Special">Special</button>
       </div>
+
       <div id="shopItems" class="item-grid"></div>
     </section>
 
-    <section class="panel cart-panel">
+    <section class="panel">
       <h2>Mandje</h2>
-      <div id="cartItems" class="cart-list">
-        <p class="muted">Nog geen items gekozen.</p>
-      </div>
-      <div class="cart-summary">
+      <div id="cartItems" class="cart-list"><p class="muted">Nog geen items gekozen.</p></div>
+      <div class="info-box">
         <p><strong>Totaal:</strong> <span id="cartTotal">0</span> gp</p>
         <p><strong>Gold na aankoop:</strong> <span id="goldAfter">0</span> gp</p>
       </div>
-      <button id="buyBtn" class="buy-btn">Koop items</button>
+      <button id="buyBtn">Koop items</button>
+    </section>
+
+    <section class="panel full-width">
+      <h2>Itembeheer</h2>
+      <div class="admin-grid">
+        <div>
+          <label for="newItemName">Itemnaam</label>
+          <input id="newItemName" type="text" placeholder="Moon Salt" />
+        </div>
+        <div>
+          <label for="newItemPrice">Prijs</label>
+          <input id="newItemPrice" type="number" min="0" step="1" placeholder="5" />
+        </div>
+        <div>
+          <label for="newItemCategory">Categorie</label>
+          <select id="newItemCategory">
+            <option>Common</option>
+            <option>Local</option>
+            <option>Special</option>
+          </select>
+        </div>
+        <div class="full-span">
+          <label for="newItemDescription">Beschrijving</label>
+          <input id="newItemDescription" type="text" placeholder="Korte omschrijving" />
+        </div>
+      </div>
+      <div class="button-row">
+        <button id="addItemBtn">Voeg item toe aan huidige stad</button>
+        <button id="resetTownBtn" class="danger">Reset huidige stad naar bestand</button>
+      </div>
       <p id="message" class="message"></p>
     </section>
   </main>
