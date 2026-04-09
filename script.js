@@ -1,120 +1,143 @@
-:root {
-  --bg: #161411;
-  --panel: #211d18;
-  --panel-2: #2b241d;
-  --text: #f0e6d2;
-  --muted: #b9a98c;
-  --accent: #b8893c;
-  --accent-2: #6b9e87;
-  --danger: #b85c5c;
-  --border: #4b3f33;
+let shopData = [];
+let cart = [];
+let selectedCategory = 'all';
+
+const playerNameInput = document.getElementById('playerName');
+const playerGoldInput = document.getElementById('playerGold');
+const townSelect = document.getElementById('townSelect');
+const loadTownBtn = document.getElementById('loadTownBtn');
+const shopItems = document.getElementById('shopItems');
+const cartItems = document.getElementById('cartItems');
+const cartTotal = document.getElementById('cartTotal');
+const goldAfter = document.getElementById('goldAfter');
+const displayName = document.getElementById('displayName');
+const displayGold = document.getElementById('displayGold');
+const buyBtn = document.getElementById('buyBtn');
+const message = document.getElementById('message');
+
+function getGold() {
+  return Number(playerGoldInput.value) || 0;
 }
 
-* { box-sizing: border-box; }
-body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  background: var(--bg);
-  color: var(--text);
+function updatePlayerBox() {
+  displayName.textContent = playerNameInput.value || '-';
+  displayGold.textContent = getGold();
+  updateCartSummary();
 }
 
-.hero {
-  padding: 2rem;
-  text-align: center;
-  background: linear-gradient(180deg, #241d16, #161411);
-  border-bottom: 1px solid var(--border);
+function updateCartSummary() {
+  const total = cart.reduce((sum, item) => sum + item.price, 0);
+  cartTotal.textContent = total;
+  goldAfter.textContent = Math.max(getGold() - total, 0);
 }
 
-.layout {
-  display: grid;
-  grid-template-columns: 1fr 2fr 1fr;
-  gap: 1rem;
-  padding: 1rem;
+function renderCart() {
+  if (cart.length === 0) {
+    cartItems.innerHTML = '<p class="muted">Nog geen items gekozen.</p>';
+    updateCartSummary();
+    return;
+  }
+
+  cartItems.innerHTML = cart.map((item, index) => `
+    <div class="cart-item">
+      <span>${item.name} (${item.price} gp)</span>
+      <button onclick="removeFromCart(${index})">Verwijder</button>
+    </div>
+  `).join('');
+  updateCartSummary();
 }
 
-.panel {
-  background: var(--panel);
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  padding: 1rem;
+window.removeFromCart = function(index) {
+  cart.splice(index, 1);
+  renderCart();
+};
+
+function addToCart(itemId) {
+  const item = shopData.find(i => i.id === itemId);
+  if (!item) return;
+  cart.push(item);
+  renderCart();
 }
 
-label, input, select, button { display: block; width: 100%; }
-input, select {
-  margin: 0.35rem 0 1rem;
-  padding: 0.75rem;
-  background: var(--panel-2);
-  border: 1px solid var(--border);
-  color: var(--text);
-  border-radius: 8px;
+window.addToCart = addToCart;
+
+function renderShop() {
+  const filtered = selectedCategory === 'all'
+    ? shopData
+    : shopData.filter(item => item.category === selectedCategory);
+
+  if (!filtered.length) {
+    shopItems.innerHTML = '<p class="muted">Geen items in deze categorie.</p>';
+    return;
+  }
+
+  shopItems.innerHTML = filtered.map(item => `
+    <article class="item-card">
+      <span class="tag">${item.category}</span>
+      <h3>${item.name}</h3>
+      <p>${item.description}</p>
+      <p><strong>${item.price} gp</strong></p>
+      <button onclick="addToCart(${item.id})">In mandje</button>
+    </article>
+  `).join('');
 }
 
-button {
-  padding: 0.8rem;
-  border: none;
-  border-radius: 8px;
-  background: var(--accent);
-  color: #161411;
-  font-weight: bold;
-  cursor: pointer;
+async function loadTown() {
+  const response = await fetch(townSelect.value);
+  const data = await response.json();
+  shopData = data.items;
+  cart = [];
+  message.textContent = `${data.town} geladen.`;
+  message.className = 'message';
+  renderShop();
+  renderCart();
 }
 
-button:hover { opacity: 0.92; }
-.filters {
-  display: flex;
-  gap: 0.5rem;
-  flex-wrap: wrap;
-  margin-bottom: 1rem;
-}
-.filter-btn {
-  width: auto;
-  background: var(--panel-2);
-  color: var(--text);
-  border: 1px solid var(--border);
-}
-.filter-btn.active { background: var(--accent-2); color: #111; }
-
-.item-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 1rem;
-}
-.item-card {
-  background: var(--panel-2);
-  border: 1px solid var(--border);
-  border-radius: 10px;
-  padding: 1rem;
-}
-.item-card h3 { margin-top: 0; }
-.tag {
-  display: inline-block;
-  margin-bottom: 0.75rem;
-  padding: 0.25rem 0.6rem;
-  background: #3b3127;
-  border-radius: 999px;
-  color: var(--muted);
-  font-size: 0.85rem;
+function setCategory(category) {
+  selectedCategory = category;
+  document.querySelectorAll('.filter-btn').forEach(btn => {
+    btn.classList.toggle('active', btn.dataset.category === category);
+  });
+  renderShop();
 }
 
-.cart-item {
-  display: flex;
-  justify-content: space-between;
-  gap: 0.5rem;
-  padding: 0.6rem 0;
-  border-bottom: 1px solid var(--border);
-}
-.muted { color: var(--muted); }
-.gold-box, .cart-summary {
-  margin-top: 1rem;
-  padding: 0.75rem;
-  background: var(--panel-2);
-  border-radius: 8px;
-}
-.buy-btn { margin-top: 1rem; background: var(--accent-2); }
-.message { min-height: 1.5rem; margin-top: 0.8rem; color: var(--muted); }
-.error { color: #ff9a9a; }
-.success { color: #9fe3b5; }
+document.querySelectorAll('.filter-btn').forEach(btn => {
+  btn.addEventListener('click', () => setCategory(btn.dataset.category));
+});
 
-@media (max-width: 900px) {
-  .layout { grid-template-columns: 1fr; }
-}
+buyBtn.addEventListener('click', () => {
+  const gold = getGold();
+  const total = cart.reduce((sum, item) => sum + item.price, 0);
+
+  if (!playerNameInput.value.trim()) {
+    message.textContent = 'Vul eerst een spelersnaam in.';
+    message.className = 'message error';
+    return;
+  }
+
+  if (cart.length === 0) {
+    message.textContent = 'Je mandje is leeg.';
+    message.className = 'message error';
+    return;
+  }
+
+  if (total > gold) {
+    message.textContent = 'Niet genoeg gold voor deze aankoop.';
+    message.className = 'message error';
+    return;
+  }
+
+  playerGoldInput.value = gold - total;
+  cart = [];
+  updatePlayerBox();
+  renderCart();
+  message.textContent = 'Aankoop voltooid. Gold is bijgewerkt.';
+  message.className = 'message success';
+});
+
+playerNameInput.addEventListener('input', updatePlayerBox);
+playerGoldInput.addEventListener('input', updatePlayerBox);
+loadTownBtn.addEventListener('click', loadTown);
+
+updatePlayerBox();
+loadTown();
