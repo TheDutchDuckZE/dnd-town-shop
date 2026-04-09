@@ -1,6 +1,6 @@
 {
   "town": "Human Resource",
-  "description": "A deeply questionable town market where sketchy healers, illegal dealers, fences, and assassin contacts all trade under one roof.",
+  "description": "A deeply questionable market where sketchy healers, illegal arms sellers, fences, and assassin contacts all work under one roof.",
   "categories": [
     "Sketchy Merchant",
     "Illegal Arms Dealer",
@@ -12,98 +12,98 @@
     {
       "id": 1,
       "name": "Dodgy Healing Potion",
-      "price": 50,
+      "priceCp": 500,
       "category": "Sketchy Merchant",
       "description": "Heals 1d4+4. Roll 1d6 for a side effect: Molten Warmth, Flash-Blindness, Adrenal Surge, Smoke Breath, Alcoholic Aftertaste, or Overcharged Essence."
     },
     {
       "id": 2,
       "name": "Forget-Root Powder",
-      "price": 35,
+      "priceCp": 350,
       "category": "Sketchy Merchant",
       "description": "A fine chalky dust; if inhaled or consumed, the target forgets the last 12 seconds."
     },
     {
       "id": 3,
       "name": "Glass Eye of Watching",
-      "price": 90,
+      "priceCp": 900,
       "category": "Sketchy Merchant",
       "description": "Like an ersatz eye, but it can be placed remotely. While using it, the user cannot see through their own eyes."
     },
     {
       "id": 4,
       "name": "Pouch of Generosity",
-      "price": 40,
+      "priceCp": 400,
       "category": "Sketchy Merchant",
       "description": "A common wondrous item that produces candies, copper pieces, or small toys, but only when used with the intent to give them away."
     },
     {
       "id": 5,
       "name": "Iron Arrow of Return",
-      "price": 80,
+      "priceCp": 800,
       "category": "Illegal Arms Dealer",
       "description": "Fired by miming the act of loading or drawing. Uses the relevant bow stats and returns to the shooter after impact."
     },
     {
       "id": 6,
       "name": "Unclear Missile",
-      "price": 65,
+      "priceCp": 650,
       "category": "Illegal Arms Dealer",
       "description": "Fits any ranged or siege weapon. On impact, it emits a 60-foot aura of confusion for 1 minute, causing disadvantage on Perception checks, then evaporates."
     },
     {
       "id": 7,
       "name": "Rod of Disintegration",
-      "price": 250,
+      "priceCp": 2500,
       "category": "Illegal Arms Dealer",
       "description": "Functions once, then disintegrates itself."
     },
     {
       "id": 8,
       "name": "Bottled Ooze",
-      "price": 120,
+      "priceCp": 1200,
       "category": "Thieves' Fence",
       "description": "A small ooze sealed in glass. It corrodes objects and can attack creatures. Favored by assassins and alchemists."
     },
     {
       "id": 9,
       "name": "Magnetic Orb",
-      "price": 180,
+      "priceCp": 1800,
       "category": "Thieves' Fence",
       "description": "A large iron orb activated by command word. It creates a powerful magnetic pull that slows armored foes and disarms weapons. It must be recharged with lightning."
     },
     {
       "id": 10,
       "name": "Pristine Lockpick Set",
-      "price": 95,
+      "priceCp": 950,
       "category": "Thieves' Fence",
       "description": "Functions as Thieves' Tools and grants an additional +2 bonus."
     },
     {
       "id": 11,
       "name": "The Helpful Hand",
-      "price": 140,
+      "priceCp": 1400,
       "category": "Assassin's Contacts",
       "description": "A rotting hand kept in a silk-lined box. It understands Common, excels at one skill, obeys when promised return to its box, and may leave if it finds a more comfortable home."
     },
     {
       "id": 12,
       "name": "Goblin Mask",
-      "price": 75,
+      "priceCp": 750,
       "category": "Assassin's Contacts",
       "description": "A clay mask that makes a small humanoid appear to be a human child. Commonly used for infiltration."
     },
     {
       "id": 13,
       "name": "Ice Weapon",
-      "price": 110,
+      "priceCp": 1100,
       "category": "Assassin's Contacts",
       "description": "An enchanted ice arrow, dagger, or shortsword that does not melt or shatter until 1 minute after touching blood."
     },
     {
       "id": 14,
       "name": "Illusion Scroll of the Living Double",
-      "price": 300,
+      "priceCp": 3000,
       "category": "Strange Magic Shop",
       "description": "Creates a hyper-realistic illusion that believes it is real. If confronted with proof, it suffers an existential crisis, goes insane, and rapidly shifts forms until ended by Dispel Magic."
     }
