@@ -1,5 +1,5 @@
 const townFiles = [
-{ name: 'Human Resource', file: 'data/Human-Resource.json' }
+  { name: 'Human Resource', file: 'data/human-resource.json' }
 ];
 
 let shopData = [];
@@ -9,15 +9,18 @@ let selectedCategory = 'all';
 let currentTown = null;
 
 const playerNameInput = document.getElementById('playerName');
-const playerGoldInput = document.getElementById('playerGold');
+const playerPpInput = document.getElementById('playerPp');
+const playerGpInput = document.getElementById('playerGp');
+const playerSpInput = document.getElementById('playerSp');
+const playerCpInput = document.getElementById('playerCp');
 const townSelect = document.getElementById('townSelect');
 const loadTownBtn = document.getElementById('loadTownBtn');
 const shopItems = document.getElementById('shopItems');
 const cartItems = document.getElementById('cartItems');
 const cartTotal = document.getElementById('cartTotal');
+const fundsDisplay = document.getElementById('displayFunds');
 const goldAfter = document.getElementById('goldAfter');
 const displayName = document.getElementById('displayName');
-const displayGold = document.getElementById('displayGold');
 const displayTown = document.getElementById('displayTown');
 const buyBtn = document.getElementById('buyBtn');
 const message = document.getElementById('message');
@@ -27,24 +30,62 @@ const purchaseHistoryBox = document.getElementById('purchaseHistory');
 const coin = document.getElementById('coin');
 
 function populateTownSelect() {
-  townSelect.innerHTML = townFiles.map(town => `<option value="${town.file}">${town.name}</option>`).join('');
+  townSelect.innerHTML = townFiles
+    .map(town => `<option value="${town.file}">${town.name}</option>`)
+    .join('');
 }
 
-function getGold() {
-  return Number(playerGoldInput.value) || 0;
+function currencyToCopper(pp, gp, sp, cp) {
+  return (Number(pp) || 0) * 1000 +
+         (Number(gp) || 0) * 100 +
+         (Number(sp) || 0) * 10 +
+         (Number(cp) || 0);
+}
+
+function copperToCurrency(totalCp) {
+  const pp = Math.floor(totalCp / 1000);
+  totalCp %= 1000;
+  const gp = Math.floor(totalCp / 100);
+  totalCp %= 100;
+  const sp = Math.floor(totalCp / 10);
+  const cp = totalCp % 10;
+  return { pp, gp, sp, cp };
+}
+
+function formatCurrency(totalCp) {
+  const { pp, gp, sp, cp } = copperToCurrency(totalCp);
+  return `${pp} pp, ${gp} gp, ${sp} sp, ${cp} cp`;
+}
+
+function getPlayerCopper() {
+  return currencyToCopper(
+    playerPpInput.value,
+    playerGpInput.value,
+    playerSpInput.value,
+    playerCpInput.value
+  );
+}
+
+function setPlayerCopper(totalCp) {
+  const { pp, gp, sp, cp } = copperToCurrency(Math.max(0, totalCp));
+  playerPpInput.value = pp;
+  playerGpInput.value = gp;
+  playerSpInput.value = sp;
+  playerCpInput.value = cp;
 }
 
 function updatePlayerBox() {
   displayName.textContent = playerNameInput.value || '-';
-  displayGold.textContent = getGold();
   displayTown.textContent = currentTown?.town || '-';
+  fundsDisplay.textContent = formatCurrency(getPlayerCopper());
   updateCartSummary();
 }
 
 function updateCartSummary() {
-  const total = cart.reduce((sum, item) => sum + item.price, 0);
-  cartTotal.textContent = total;
-  goldAfter.textContent = Math.max(getGold() - total, 0);
+  const totalCp = cart.reduce((sum, item) => sum + item.priceCp, 0);
+  const remainingCp = Math.max(getPlayerCopper() - totalCp, 0);
+  cartTotal.textContent = formatCurrency(totalCp);
+  goldAfter.textContent = formatCurrency(remainingCp);
 }
 
 function flashCoin() {
@@ -75,9 +116,9 @@ function renderPurchaseHistory() {
       <div class="item-meta">
         <strong>${entry.player}</strong>
         <span>${entry.itemNames.join(', ')}</span>
-        <span class="muted">${entry.town} · Total spent: ${entry.total} gp</span>
+        <span class="muted">${entry.town} · Total spent: ${formatCurrency(entry.totalCp)}</span>
       </div>
-      <span>${entry.remainingGold} gp left</span>
+      <span>${formatCurrency(entry.remainingCp)} left</span>
     </div>
   `).join('');
 }
@@ -93,11 +134,12 @@ function renderCart() {
     <div class="cart-item row-drop">
       <div class="item-meta">
         <strong>${item.name}</strong>
-        <span class="muted">${item.category} · ${item.price} gp</span>
+        <span class="muted">${item.category} · ${formatCurrency(item.priceCp)}</span>
       </div>
       <button onclick="removeFromCart(${index})">Remove</button>
     </div>
   `).join('');
+
   updateCartSummary();
 }
 
@@ -118,8 +160,12 @@ function addToCart(itemId) {
 window.addToCart = addToCart;
 
 function renderFilters() {
-  const categories = currentTown?.categories?.length ? currentTown.categories : ['Common', 'Local', 'Special'];
+  const categories = currentTown?.categories?.length
+    ? currentTown.categories
+    : ['Common', 'Local', 'Special'];
+
   const allCategories = ['all', ...categories];
+
   filters.innerHTML = allCategories.map(category => `
     <button class="filter-btn ${selectedCategory === category ? 'active' : ''}" data-category="${category}">
       ${category === 'all' ? 'All' : category}
@@ -147,7 +193,7 @@ function renderShop() {
       <h3>${item.name}</h3>
       <p>${item.description}</p>
       <div class="card-footer">
-        <strong>${item.price} gp</strong>
+        <strong>${formatCurrency(item.priceCp)}</strong>
         <button onclick="addToCart(${item.id})">Add to cart</button>
       </div>
     </article>
@@ -176,8 +222,8 @@ function setCategory(category) {
 }
 
 buyBtn.addEventListener('click', () => {
-  const gold = getGold();
-  const total = cart.reduce((sum, item) => sum + item.price, 0);
+  const playerCp = getPlayerCopper();
+  const totalCp = cart.reduce((sum, item) => sum + item.priceCp, 0);
 
   if (!playerNameInput.value.trim()) {
     showMessage('Enter a player name first.', 'message error');
@@ -189,20 +235,20 @@ buyBtn.addEventListener('click', () => {
     return;
   }
 
-  if (total > gold) {
-    showMessage('Not enough gold for this purchase.', 'message error');
+  if (totalCp > playerCp) {
+    showMessage('Not enough money for this purchase.', 'message error');
     return;
   }
 
-  const remainingGold = gold - total;
-  playerGoldInput.value = remainingGold;
+  const remainingCp = playerCp - totalCp;
+  setPlayerCopper(remainingCp);
 
   purchaseHistory.unshift({
     player: playerNameInput.value.trim(),
     town: currentTown?.town || 'Unknown town',
     itemNames: cart.map(item => item.name),
-    total,
-    remainingGold
+    totalCp,
+    remainingCp
   });
 
   cart = [];
@@ -211,11 +257,13 @@ buyBtn.addEventListener('click', () => {
   renderPurchaseHistory();
   flashCoin();
   flashBuyButton();
-  showMessage('Purchase complete. Gold updated.', 'message success');
+  showMessage('Purchase complete. Funds updated.', 'message success');
 });
 
-playerNameInput.addEventListener('input', updatePlayerBox);
-playerGoldInput.addEventListener('input', updatePlayerBox);
+[playerPpInput, playerGpInput, playerSpInput, playerCpInput, playerNameInput].forEach(input => {
+  input.addEventListener('input', updatePlayerBox);
+});
+
 loadTownBtn.addEventListener('click', loadTown);
 
 populateTownSelect();
