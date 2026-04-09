@@ -1,6 +1,5 @@
 const townFiles = [
-  { name: 'Frostmarket', file: 'data/Frostmarket.json' },
-  { name: 'Ashport', file: 'data/ashport.json' }
+{ name: 'test', file: 'data/test.json' },
 ];
 
 let shopData = [];
