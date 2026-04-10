@@ -119,7 +119,23 @@
       "name": "Staff of Light",
       "priceCp": 80,
       "category": "Strange Magic Shop",
-      "description": "A simple staff that can shed bright light in a 20-foot radius and dim light for a further 20 feet."
+      "description": "A simple staff with the title staff of light."
+    }
+     {
+      "id": 17,
+      "name": "wand of acid spray",
+      "priceCp": 30,
+      "category": "Sketchy Merchant",
+      "description": "A wand with the title staff of acid spray."
+    }
+     {
+      "id": 18,
+      "name": "Truly Immovable Rod",
+      "priceCp": 800,
+      "category": "Strange Magic Shop",
+      "description": "A Immovable rod, when you push a small button on the side, stands still on a fixed place in space."
     }
   ]
 }
+
+Once activated, it disappears off into the distance with incredible speed, as the planet you're standing on continues hurtling through the universe, leaving the rod stranded where it was activated for ever after.
