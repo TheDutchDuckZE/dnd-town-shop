@@ -1,6 +1,6 @@
 {
   "town": "Human Resource",
-  "description": "A deeply questionable market where sketchy healers, illegal arms sellers, fences, and assassin contacts all work under one roof.",
+  "description": "The underbelly of HR a deeply questionable market where sketchy healers, illegal arms sellers, fences, and assassin contacts all work under one roof.",
   "categories": [
     "Sketchy Merchant",
     "Illegal Arms Dealer",
@@ -14,21 +14,21 @@
       "name": "Dodgy Healing Potion",
       "priceCp": 500,
       "category": "Sketchy Merchant",
-      "description": "Heals 1d4+4. Roll 1d6 for a side effect: Molten Warmth, Flash-Blindness, Adrenal Surge, Smoke Breath, Alcoholic Aftertaste, or Overcharged Essence."
+      "description": "Heals 1d4+4. Roll 1d6 for a side effect"
     },
     {
       "id": 2,
       "name": "Forget-Root Powder",
-      "priceCp": 350,
+      "priceCp": 550,
       "category": "Sketchy Merchant",
       "description": "A fine chalky dust; if inhaled or consumed, the target forgets the last 12 seconds."
     },
     {
       "id": 3,
       "name": "Glass Eye of Watching",
-      "priceCp": 900,
+      "priceCp": 999,
       "category": "Sketchy Merchant",
-      "description": "Like an ersatz eye, but it can be placed remotely. While using it, the user cannot see through their own eyes."
+      "description": "A glass eye, when used, lets the user see through the eye, the user cannot see through their own eyes."
     },
     {
       "id": 4,
@@ -40,14 +40,14 @@
     {
       "id": 5,
       "name": "Iron Arrow of Return",
-      "priceCp": 800,
+      "priceCp": 1200,
       "category": "Illegal Arms Dealer",
       "description": "Fired by miming the act of loading or drawing. Uses the relevant bow stats and returns to the shooter after impact."
     },
     {
       "id": 6,
       "name": "Unclear Missile",
-      "priceCp": 650,
+      "priceCp": 2000,
       "category": "Illegal Arms Dealer",
       "description": "Fits any ranged or siege weapon. On impact, it emits a 60-foot aura of confusion for 1 minute, causing disadvantage on Perception checks, then evaporates."
     },
@@ -56,7 +56,7 @@
       "name": "Rod of Disintegration",
       "priceCp": 2500,
       "category": "Illegal Arms Dealer",
-      "description": "Functions once, then disintegrates itself."
+      "description": "Fits any ranged or siege weapon. Functions once, then disintegrates itself."
     },
     {
       "id": 8,
@@ -75,7 +75,7 @@
     {
       "id": 10,
       "name": "Pristine Lockpick Set",
-      "priceCp": 950,
+      "priceCp": 2000,
       "category": "Thieves' Fence",
       "description": "Functions as Thieves' Tools and grants an additional +2 bonus."
     },
@@ -89,7 +89,7 @@
     {
       "id": 12,
       "name": "Goblin Mask",
-      "priceCp": 750,
+      "priceCp": 5000,
       "category": "Assassin's Contacts",
       "description": "A clay mask that makes a small humanoid appear to be a human child. Commonly used for infiltration."
     },
@@ -98,7 +98,7 @@
       "name": "Ice Weapon",
       "priceCp": 1100,
       "category": "Assassin's Contacts",
-      "description": "An enchanted ice arrow, dagger, or shortsword that does not melt or shatter until 1 minute after touching blood."
+      "description": "An enchanted +2 ice arrow, dagger, or shortsword that does not melt or shatter until 1 minute after touching blood."
     },
     {
       "id": 14,
@@ -106,6 +106,20 @@
       "priceCp": 3000,
       "category": "Strange Magic Shop",
       "description": "Creates a hyper-realistic illusion that believes it is real. If confronted with proof, it suffers an existential crisis, goes insane, and rapidly shifts forms until ended by Dispel Magic."
+    }
+     {
+      "id": 15,
+      "name": "Shield of Shame",
+      "priceCp":  "3000",
+      "category": "Strange Magic Shop",
+      "description": "gives a small amount of bonus (+2) if you're clothed. BUT! you gain an adisinal +1 higher bonus for evry major pece of clothing you remove, starting with armor. up to +8"
+    }
+     {
+      "id": 16,
+      "name": "Staff of Light",
+      "priceCp":  "80",
+      "category": "Strange Magic Shop",
+      "description": ""
     }
   ]
 }
