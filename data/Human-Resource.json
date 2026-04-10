@@ -1,6 +1,6 @@
 {
   "town": "Human Resource",
-  "description": "The underbelly of HR a deeply questionable market where sketchy healers, illegal arms sellers, fences, and assassin contacts all work under one roof.",
+  "description": "The underbelly of HR: a deeply questionable market where sketchy healers, illegal arms sellers, fences, and assassin contacts all work under one roof.",
   "categories": [
     "Sketchy Merchant",
     "Illegal Arms Dealer",
@@ -14,7 +14,7 @@
       "name": "Dodgy Healing Potion",
       "priceCp": 500,
       "category": "Sketchy Merchant",
-      "description": "Heals 1d4+4. Roll 1d6 for a side effect"
+      "description": "Heals 1d4+4. Roll 1d6 for a side effect."
     },
     {
       "id": 2,
@@ -28,7 +28,7 @@
       "name": "Glass Eye of Watching",
       "priceCp": 999,
       "category": "Sketchy Merchant",
-      "description": "A glass eye, when used, lets the user see through the eye, the user cannot see through their own eyes."
+      "description": "A glass eye; when used, the user sees through the eye but cannot see through their own eyes."
     },
     {
       "id": 4,
@@ -56,7 +56,7 @@
       "name": "Rod of Disintegration",
       "priceCp": 2500,
       "category": "Illegal Arms Dealer",
-      "description": "Fits any ranged or siege weapon. Functions once, then disintegrates itself."
+      "description": "A one-use rod that disintegrates a target on activation, then crumbles to dust."
     },
     {
       "id": 8,
@@ -106,85 +106,20 @@
       "priceCp": 3000,
       "category": "Strange Magic Shop",
       "description": "Creates a hyper-realistic illusion that believes it is real. If confronted with proof, it suffers an existential crisis, goes insane, and rapidly shifts forms until ended by Dispel Magic."
-    }
-     {
+    },
+    {
       "id": 15,
       "name": "Shield of Shame",
-      "priceCp":  "3000",
-      "category": "Strange Magic Shop",
-      "description": "gives a small amount of bonus (+2) if you're clothed. BUT! you gain an adisinal +1 higher bonus for evry major pece of clothing you remove, starting with armor. up to +8"
-    }
-     {
-      "id": 16,
-      "name": "Staff of Light",
-      "priceCp":  "80",
-      "category": "Strange Magic Shop",
-      "description": ""
-    }
-  ]
-}    {
-      "id": 8,
-      "name": "Bottled Ooze",
-      "priceCp": 1200,
-      "category": "Thieves' Fence",
-      "description": "A small ooze sealed in glass. It corrodes objects and can attack creatures. Favored by assassins and alchemists."
-    },
-    {
-      "id": 9,
-      "name": "Magnetic Orb",
-      "priceCp": 1800,
-      "category": "Thieves' Fence",
-      "description": "A large iron orb activated by command word. It creates a powerful magnetic pull that slows armored foes and disarms weapons. It must be recharged with lightning."
-    },
-    {
-      "id": 10,
-      "name": "Pristine Lockpick Set",
-      "priceCp": 2000,
-      "category": "Thieves' Fence",
-      "description": "Functions as Thieves' Tools and grants an additional +2 bonus."
-    },
-    {
-      "id": 11,
-      "name": "The Helpful Hand",
-      "priceCp": 1400,
-      "category": "Assassin's Contacts",
-      "description": "A rotting hand kept in a silk-lined box. It understands Common, excels at one skill, obeys when promised return to its box, and may leave if it finds a more comfortable home."
-    },
-    {
-      "id": 12,
-      "name": "Goblin Mask",
-      "priceCp": 5000,
-      "category": "Assassin's Contacts",
-      "description": "A clay mask that makes a small humanoid appear to be a human child. Commonly used for infiltration."
-    },
-    {
-      "id": 13,
-      "name": "Ice Weapon",
-      "priceCp": 1100,
-      "category": "Assassin's Contacts",
-      "description": "An enchanted +2 ice arrow, dagger, or shortsword that does not melt or shatter until 1 minute after touching blood."
-    },
-    {
-      "id": 14,
-      "name": "Illusion Scroll of the Living Double",
       "priceCp": 3000,
       "category": "Strange Magic Shop",
-      "description": "Creates a hyper-realistic illusion that believes it is real. If confronted with proof, it suffers an existential crisis, goes insane, and rapidly shifts forms until ended by Dispel Magic."
-    }
-     {
-      "id": 15,
-      "name": "Shield of Shame",
-      "priceCp":  "3000",
-      "category": "Strange Magic Shop",
-      "description": "gives a small amount of bonus (+2) if you're clothed. BUT! you gain an adisinal +1 higher bonus for evry major pece of clothing you remove, starting with armor. up to +8"
-    }
-     {
+      "description": "Grants +2 AC while clothed. For each major piece of clothing removed (starting with armor), the bonus increases by +1, up to +8."
+    },
+    {
       "id": 16,
       "name": "Staff of Light",
-      "priceCp":  "80",
+      "priceCp": 80,
       "category": "Strange Magic Shop",
-      "description": ""
+      "description": "A simple staff that can shed bright light in a 20-foot radius and dim light for a further 20 feet."
     }
   ]
 }
-
