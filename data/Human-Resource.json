@@ -134,6 +134,13 @@
       "priceCp": 800,
       "category": "Strange Magic Shop",
       "description": "A Immovable rod, when you push a small button on the side, stands still on a fixed place in space."
-    }
+    },
+     {
+      "id": 19,
+      "name": "Fox Ring",
+      "priceCp": 1000,
+      "category": "Strange Magic Shop",
+      "description": "a wooden ring in the shape of a fox chasing it's own tail."
+     },
   ]
 }
