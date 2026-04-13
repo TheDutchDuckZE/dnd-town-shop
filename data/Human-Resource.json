@@ -121,26 +121,47 @@
       "category": "Strange Magic Shop",
       "description": "A simple staff with the title staff of light."
     },
-     {
+    {
       "id": 17,
       "name": "wand of acid spray",
       "priceCp": 30,
       "category": "Sketchy Merchant",
       "description": "A wand with the title staff of acid spray."
     },
-     {
+    {
       "id": 18,
       "name": "Truly Immovable Rod",
       "priceCp": 800,
       "category": "Strange Magic Shop",
       "description": "A Immovable rod, when you push a small button on the side, stands still on a fixed place in space."
     },
-     {
+    {
       "id": 19,
       "name": "Fox Ring",
       "priceCp": 1000,
       "category": "Strange Magic Shop",
       "description": "a wooden ring in the shape of a fox chasing it's own tail."
-     },
+    },
+    {
+      "id": 20,
+      "name": "Bottle of Perspective",
+      "priceCp": 600,
+      "category": "Strange Magic Shop",
+      "description": "A glass bottle that functions as normal. No matter how much liquid is inside, it always seems to be half full. You can pour out the contents as normal. No-one knows what happens to the excess liquid."
+    },
+    {
+      "id": 21,
+      "name": "Cinematic Lenses",
+      "priceCp": 5000,
+      "category": "Strange Magic Shop",
+      "description": "These glasses double your range of vision and even let you see around corners. They also come with a nifty illusion."
+    },
+    {
+      "id": 22,
+      "name": "Ring of Fire Detection",
+      "priceCp": 200,
+      "category": "Strange Magic Shop",
+      "description": "Range touch. Allows the wearer to determine if fire is real or illusory. Note: touching fire may cause damage to the wearer."
+    }
   ]
 }
