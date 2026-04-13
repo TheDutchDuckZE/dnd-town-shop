@@ -1,5 +1,5 @@
 const townFiles = [
-    { name: 'generic items', file: 'data/Generic_items.json' },
+  { name: 'generic items', file: 'data/Generic_items.json' },
   { name: 'Human Resource', file: 'data/Human-Resource.json' }
 ];
 
